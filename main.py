@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile
 import fitz  # PyMuPDF
 
-# Import nltk and download the VADER lexicon if not already present.
+# Import nltk and download the VADER lexicon (for sentiment analysis)
 import nltk
 nltk.download('vader_lexicon', quiet=True)
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -20,11 +20,11 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
     return text
 
 def perform_analysis(extracted_text: str) -> dict:
-    # Initialize sentiment analyzer
+    # Initialize the sentiment analyzer
     sia = SentimentIntensityAnalyzer()
     sentiment_scores = sia.polarity_scores(extracted_text)
 
-    # Dummy analysis sections. Later, you can replace these with real calculations.
+    # Dummy analysis sections (replace with real logic later)
     return {
         "Key Financial Highlights": (
             "| Metric    | Value  | Explanation |\n"
